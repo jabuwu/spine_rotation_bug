@@ -131,16 +131,16 @@ void spineboy(spSkeletonData *skeletonData, spAtlas *atlas) {
 	spSlot *headSlot = spSkeleton_findSlot(skeleton, "head");
 
 	drawable->state->listener = callback;
-	spAnimationState_setAnimationByName(drawable->state, 0, "run", true);
-
+	spAnimationState_setAnimationByName(drawable->state, 0, "idle", true);
+	spAnimationState_setAnimationByName(drawable->state, 1, "run", true);
 
 	for (int i = 0; i < 700; ++i) {
-		drawable->state->tracks[0]->alpha = (i % 200 > 100) ? 0.5 : 1.0;
+		drawable->state->tracks[1]->alpha = (i % 200 > 100) ? 0.5 : 1.0;
 		spAnimationState_update(drawable->state, 0.016);
 		spAnimationState_apply(drawable->state, drawable->skeleton);
 		spSkeleton_updateWorldTransform(drawable->skeleton);
 	}
-	drawable->state->tracks[0]->alpha = 0.5;
+	drawable->state->tracks[1]->alpha = 0.5;
 	spAnimationState_update(drawable->state, 0.016);
 	spAnimationState_apply(drawable->state, drawable->skeleton);
 	spSkeleton_updateWorldTransform(drawable->skeleton);
