@@ -136,15 +136,18 @@ void spineboy(spSkeletonData *skeletonData, spAtlas *atlas) {
 
 	for (int i = 0; i < 700; ++i) {
 		drawable->state->tracks[1]->alpha = (i % 200 > 100) ? 0.5 : 1.0;
+		spSkeleton_setToSetupPose(drawable->skeleton);
 		spAnimationState_update(drawable->state, 0.016);
 		spAnimationState_apply(drawable->state, drawable->skeleton);
 		spSkeleton_updateWorldTransform(drawable->skeleton);
 	}
 	drawable->state->tracks[1]->alpha = 0.5;
+	spSkeleton_setToSetupPose(drawable->skeleton);
 	spAnimationState_update(drawable->state, 0.016);
 	spAnimationState_apply(drawable->state, drawable->skeleton);
 	spSkeleton_updateWorldTransform(drawable->skeleton);
 	for (int i = 0; i < 2000; ++i) {
+		spSkeleton_setToSetupPose(drawable->skeleton);
 		spAnimationState_update(drawable->state, 0.016);
 		spAnimationState_apply(drawable->state, drawable->skeleton);
 		spSkeleton_updateWorldTransform(drawable->skeleton);
@@ -171,6 +174,7 @@ void spineboy(spSkeletonData *skeletonData, spAtlas *atlas) {
 			headSlot->color.b = 1;
 		}
 
+		spSkeleton_setToSetupPose(skeleton);
 		drawable->update(delta);
 
 		window.clear();
